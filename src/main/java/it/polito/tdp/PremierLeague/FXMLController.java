@@ -44,17 +44,52 @@ public class FXMLController {
 
     @FXML
     void doCreaGrafo(ActionEvent event) {
-
+    	String stringa_goal = this.txtGoals.getText();
+    	double mediaGoal = 0.0;
+    	try {
+    		mediaGoal = Double.parseDouble(stringa_goal);
+    	}
+    	catch(NumberFormatException nbe) {
+    		this.txtResult.setText("Inserire un valore numerico!");
+    		return;
+    	}
+    	
+    	this.model.creaGrafo(mediaGoal);
+    	
+    	this.txtResult.setText(this.model.getNumeroVertici());
+    	this.txtResult.appendText(this.model.getNumeroArchi());
     }
 
     @FXML
     void doDreamTeam(ActionEvent event) {
-
+    	String numGiocatoriScelto = this.txtK.getText();
+    	int numGiocatori = 0;
+    	try {
+    		numGiocatori = Integer.parseInt(numGiocatoriScelto);
+    	}
+    	catch(NumberFormatException nbe) {
+    		this.txtResult.setText("Inserire un numero di giocatori per il dream team!");
+    		return;
+    	}
+    	
+    	this.txtResult.appendText(this.model.cercaDreamTeam(numGiocatori));
     }
 
     @FXML
     void doTopPlayer(ActionEvent event) {
-
+    	String stringa_goal = this.txtGoals.getText();
+    	double mediaGoal = 0.0;
+    	try {
+    		mediaGoal = Double.parseDouble(stringa_goal);
+    	}
+    	catch(NumberFormatException nbe) {
+    		this.txtResult.setText("Inserire un valore numerico!");
+    		return;
+    	}
+    	
+    	this.model.creaGrafo(mediaGoal);
+    	
+    	this.txtResult.appendText(this.model.getTopPlayer());
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
